@@ -40,5 +40,31 @@ namespace Toms_Lager
                 Console.WriteLine($"ID: {produkt.Id}, Namn: {produkt.Namn}, Pris: {produkt.Pris} kr, Antal i lager: {produkt.AntalLager }");
             }
         }
+    
+        public void SparaProdukterTillCsv(string filnamn)
+        {
+            var lines = new List<string>
+            {
+                            "Id;Namn;Pris;AntalLager"  // header line
+
+            };
+
+            foreach (var produkt in Produkter)
+            {
+
+                string line = $"{produkt.Id};{produkt.Namn};{produkt.Pris};{produkt.AntalLager};";
+                lines.Add(line);
+
+
+            }
+            File.WriteAllLines(filnamn, lines);
+
+
+
+
+        }
+
+
     }
+
 }

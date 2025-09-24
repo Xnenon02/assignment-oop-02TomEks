@@ -61,8 +61,13 @@ namespace Toms_Lager
 
                 default:
                     Console.WriteLine("Ogiltigt val.");
-                    break;
+                    return;
             }
+            _lager.SparaProdukterTillCsv("C:\\Users\\minep\\Desktop\\assignment-oop-02TomEks\\OOPAssignment\\Toms_Lager\\produkter.csv"
+);
+            Console.WriteLine("Produkten har uppdaterats och sparats.");
+
+
         }
     }
 }
