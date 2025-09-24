@@ -8,10 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ordrar.csv" />
     <None Remove="produkter.csv" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="ordrar.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="produkter.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

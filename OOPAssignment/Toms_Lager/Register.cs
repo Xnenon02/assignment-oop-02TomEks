@@ -120,5 +120,48 @@ namespace Toms_Lager
             string filePath = Path.Combine(projectFolder, "produkter.csv");
             _lager.SparaProdukterTillCsv(filePath);
         }
+        public void VisaOrdrarMedProduktInfo(List<Order> orders)
+        {
+            foreach (var order in orders)
+            {
+                var produkt = _lager.Produkter.FirstOrDefault(p => p.Id == order.ProduktId);
+                if (produkt != null)
+                {
+                    Console.WriteLine($"Kund: {order.KundNamn}, Produkt: {produkt.Namn}, Pris: {produkt.Pris}, Antal: {order.Antal}");
+                }
+                else
+                {
+                    Console.WriteLine($"Kund: {order.KundNamn}, ProduktId: {order.ProduktId} (Produkt ej hittad), Antal: {order.Antal}");
+                }
+            }
+        }
+        public void BearbetaOrdrar(List<Order> orders, Lager lager)
+        {
+            foreach (var order in orders)
+            {
+                var produkt = lager.Produkter.FirstOrDefault(p => p.Id == order.ProduktId);
+                if (produkt == null)
+                {
+                    Console.WriteLine($"Produkt med ID {order.ProduktId} hittades inte för kund {order.KundNamn}.");
+                    continue;
+                }
+
+                if (produkt.AntalLager >= order.Antal)
+                {
+                    produkt.AntalLager -= order.Antal;
+                    Console.WriteLine($"Order från {order.KundNamn}: {order.Antal} st {produkt.Namn} - godkänd.");
+                }
+                else
+                {
+                    Console.WriteLine($"Order från {order.KundNamn}: {order.Antal} st {produkt.Namn} - EJ godkänd. Endast {produkt.AntalLager} i lager.");
+                }
+            }
+
+            // Spara uppdaterat lager
+            lager.SparaProdukterTillCsv("produkter_uppdaterat.csv");
+            Console.WriteLine("Lageruppdatering sparad till produkter_uppdaterat.csv.");
+        }
     }
 }
+
+    
