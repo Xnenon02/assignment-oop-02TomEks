@@ -44,7 +44,7 @@ namespace Toms_Lager
         {
             var lines = new List<string>
             {
-                            "Id;Namn;Pris;AntalLager"  // header line
+                            "Id;Namn;Pris;AntalLager"  
             };
 
             foreach (var produkt in Produkter)

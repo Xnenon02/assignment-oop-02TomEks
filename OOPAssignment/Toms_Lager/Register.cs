@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Toms_Lager;
 
 namespace Toms_Lager
 {
     internal class Register
+
     {
+        private string exeFolder;
+        private string projectFolder;
         private Lager _lager;
 
         public Register(Lager lager)
@@ -64,8 +68,6 @@ namespace Toms_Lager
                     return;
             }
 
-            
-            _lager.SparaProdukterTillCsv("C:\\Users\\minep\\Desktop\\assignment-oop-02TomEks\\OOPAssignment\\Toms_Lager\\produkter.csv");
             Console.WriteLine("Produkten har uppdaterats och sparats.");
         }
 
@@ -105,13 +107,18 @@ namespace Toms_Lager
             }
             nyProdukt.AntalLager = antal;
 
-            
+            // Add product to list
             _lager.Produkter.Add(nyProdukt);
 
-            //fråga chatgpt att hjälpa lösa vart jag skulle lägga till nedanstånde kod för att spara nya produkter
-            _lager.SparaProdukterTillCsv("C:\\Users\\minep\\Desktop\\assignment-oop-02TomEks\\OOPAssignment\\Toms_Lager\\produkter.csv");
+            // Save changes to CSV
+            _lager.SparaProdukterTillCsv("produkter.csv");
 
             Console.WriteLine("Ny produkt har lagts till och sparats.");
+            string exeFolder = AppContext.BaseDirectory;
+            // Go up three levels from exe folder to reach Toms_Lager
+            string projectFolder = Path.GetFullPath(Path.Combine(exeFolder, "..", "..", ".."));
+            string filePath = Path.Combine(projectFolder, "produkter.csv");
+            _lager.SparaProdukterTillCsv(filePath);
         }
     }
 }
