@@ -63,11 +63,55 @@ namespace Toms_Lager
                     Console.WriteLine("Ogiltigt val.");
                     return;
             }
-            _lager.SparaProdukterTillCsv("C:\\Users\\minep\\Desktop\\assignment-oop-02TomEks\\OOPAssignment\\Toms_Lager\\produkter.csv"
-);
+
+            
+            _lager.SparaProdukterTillCsv("C:\\Users\\minep\\Desktop\\assignment-oop-02TomEks\\OOPAssignment\\Toms_Lager\\produkter.csv");
             Console.WriteLine("Produkten har uppdaterats och sparats.");
+        }
 
+        public void LäggTillProdukt()
+        {
+            var nyProdukt = new Produkt();
 
+            Console.Write("Ange produkt-ID: ");
+            if (!int.TryParse(Console.ReadLine(), out int id))
+            {
+                Console.WriteLine("Ogiltigt ID.");
+                return;
+            }
+            if (_lager.Produkter.Any(p => p.Id == id))
+            {
+                Console.WriteLine("En produkt med detta ID finns redan.");
+                return;
+            }
+            nyProdukt.Id = id;
+
+            Console.Write("Ange produktnamn: ");
+            nyProdukt.Namn = Console.ReadLine();
+
+            Console.Write("Ange pris: ");
+            if (!decimal.TryParse(Console.ReadLine(), out decimal pris))
+            {
+                Console.WriteLine("Ogiltigt pris.");
+                return;
+            }
+            nyProdukt.Pris = pris;
+
+            Console.Write("Ange antal i lager: ");
+            if (!int.TryParse(Console.ReadLine(), out int antal))
+            {
+                Console.WriteLine("Ogiltigt antal.");
+                return;
+            }
+            nyProdukt.AntalLager = antal;
+
+            
+            _lager.Produkter.Add(nyProdukt);
+
+            //fråga chatgpt att hjälpa lösa vart jag skulle lägga till nedanstånde kod för att spara nya produkter
+            _lager.SparaProdukterTillCsv("C:\\Users\\minep\\Desktop\\assignment-oop-02TomEks\\OOPAssignment\\Toms_Lager\\produkter.csv");
+
+            Console.WriteLine("Ny produkt har lagts till och sparats.");
         }
     }
 }

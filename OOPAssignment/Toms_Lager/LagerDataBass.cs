@@ -10,7 +10,6 @@ namespace Toms_Lager
         public string Namn { get; set; }
         public decimal Pris { get; set; }
         public int AntalLager { get; set; }
-
     }
 
     public class Lager
@@ -28,7 +27,7 @@ namespace Toms_Lager
                     Id = int.Parse(kolumner[0]),
                     Namn = kolumner[1],
                     Pris = decimal.Parse(kolumner[2]),
-                    AntalLager  = int.Parse(kolumner[3])
+                    AntalLager = int.Parse(kolumner[3])
                 });
             }
         }
@@ -37,34 +36,23 @@ namespace Toms_Lager
         {
             foreach (var produkt in Produkter)
             {
-                Console.WriteLine($"ID: {produkt.Id}, Namn: {produkt.Namn}, Pris: {produkt.Pris} kr, Antal i lager: {produkt.AntalLager }");
+                Console.WriteLine($"ID: {produkt.Id}, Namn: {produkt.Namn}, Pris: {produkt.Pris} kr, Antal i lager: {produkt.AntalLager}");
             }
         }
-    
+
         public void SparaProdukterTillCsv(string filnamn)
         {
             var lines = new List<string>
             {
                             "Id;Namn;Pris;AntalLager"  // header line
-
             };
 
             foreach (var produkt in Produkter)
             {
-
                 string line = $"{produkt.Id};{produkt.Namn};{produkt.Pris};{produkt.AntalLager};";
                 lines.Add(line);
-
-
             }
             File.WriteAllLines(filnamn, lines);
-
-
-
-
         }
-
-
     }
-
 }

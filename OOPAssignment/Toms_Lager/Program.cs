@@ -1,6 +1,5 @@
 ﻿using Toms_Lager;
 
-
 internal class Program
 {
     private static void Main()
@@ -17,7 +16,8 @@ internal class Program
             Console.WriteLine("1. Visa alla produkter");
             Console.WriteLine("2. Avsluta");
             Console.WriteLine("3. Redigera produkt");
-            Console.WriteLine("4 Välj alternativ: ");
+            Console.WriteLine("4 Lägg till ny produkt");
+            Console.WriteLine("5 Välj alternativ: ");
             string val = Console.ReadLine();
 
             if (val == "1")
@@ -31,11 +31,13 @@ internal class Program
             }
             else if (val == "4")
             {
-               Console.WriteLine("inte tillgänglit för nuvarande eller någonsin");
-                // vete fan vad jag ska lägga här för nuvrade 
+                register.LäggTillProdukt();
+                
             }
-
-
+            else if (val == "5")
+            {
+                Console.WriteLine("inte tillgänglit för nuvarande eller någonsin");
+            }
             else
             {
                 Console.WriteLine("Ogiltigt val, försök igen.");
