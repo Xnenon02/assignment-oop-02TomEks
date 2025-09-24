@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Toms_Lager
 {
-    public class OrderService
+    public class OrderService // tar hand om logicen backom ordern listan och dess service
     {
         private readonly string _orderFil;
 
