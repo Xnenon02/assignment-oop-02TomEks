@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace Toms_Lager
+﻿namespace Toms_Lager
 {
     public class OrderService // tar hand om logicen backom ordern listan och dess service
     {
@@ -65,7 +61,5 @@ namespace Toms_Lager
 
             return orders;
         }
-       
-
     }
 }

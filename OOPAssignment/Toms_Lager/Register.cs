@@ -1,9 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using Toms_Lager;
-
-namespace Toms_Lager
+﻿namespace Toms_Lager
 {
     internal class Register
 
@@ -120,6 +115,7 @@ namespace Toms_Lager
             string filePath = Path.Combine(projectFolder, "produkter.csv");
             _lager.SparaProdukterTillCsv(filePath);
         }
+
         public void VisaOrdrarMedProduktInfo(List<Order> orders)
         {
             foreach (var order in orders)
@@ -135,6 +131,7 @@ namespace Toms_Lager
                 }
             }
         }
+
         public void BearbetaOrdrar(List<Order> orders, Lager lager)
         {
             foreach (var order in orders)
@@ -163,5 +160,3 @@ namespace Toms_Lager
         }
     }
 }
-
-    

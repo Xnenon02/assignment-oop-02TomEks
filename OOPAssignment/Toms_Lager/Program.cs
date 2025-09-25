@@ -4,7 +4,6 @@ internal class Program
 {
     private static void Main()
     {
-
         Lager lager = new Lager();
 
         lager.LaddaProdukterFranCsv("produkter.csv");
@@ -32,15 +31,14 @@ internal class Program
             {
                 register.LäggTillProdukt();
             }
-            else if (val == "4")
+            else if (val == "4") // drar fram listan
             {
                 var orderService = new OrderService("ordrar.csv");
                 var orders = orderService.LäsOrder();
                 register.VisaOrdrarMedProduktInfo(orders);
             }
-            else if (val == "5")
+            else if (val == "5") // ser om det finns tillräckligt i lagret för dessa scalpers
             {
-
                 var orderService = new OrderService("ordrar.csv");
                 var orders = orderService.LäsOrder();
 
@@ -48,15 +46,12 @@ internal class Program
             }
             else if (val == "6")
             {
-
                 kör = false;
-
-
             }
             else
             {
                 Console.WriteLine("Ogiltigt val, försök igen.");
             }
-            }
         }
     }
+}

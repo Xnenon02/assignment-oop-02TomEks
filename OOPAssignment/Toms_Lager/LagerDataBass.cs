@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-
-namespace Toms_Lager
+﻿namespace Toms_Lager
 {
     public class Produkt
     {
@@ -44,7 +40,7 @@ namespace Toms_Lager
         {
             var lines = new List<string>
             {
-                            "Id;Namn;Pris;AntalLager"  
+                            "Id;Namn;Pris;AntalLager"
             };
 
             foreach (var produkt in Produkter)
