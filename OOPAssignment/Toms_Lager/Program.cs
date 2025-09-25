@@ -2,6 +2,9 @@
 
 internal class Program
 {
+    // to do mer fel söking program så att den läser korrekt i csv filer
+    // to do en restock function
+    // to do mer dumma kommentarer
     private static void Main()
     {
         Lager lager = new Lager();
