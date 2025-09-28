@@ -26,41 +26,48 @@ internal class Program
             Console.WriteLine("7 Avsluta");
             string val = Console.ReadLine();
 
-            if (val == "1")
-                lager.VisaAllaProdukter();
-            else if (val == "2")
+            switch (val)
+            {
+                case "1":
+                    lager.VisaAllaProdukter();
+                    break;
 
-                register.RedigeraProdukt();
-            else if (val == "3")
-            {
-                register.LäggTillProdukt();
-            }
-            else if (val == "4") // drar fram listan
-            {
-                var orderService = new OrderService("ordrar.csv");
-                var orders = orderService.LäsOrder();
-                register.VisaOrdrarMedProduktInfo(orders);
-            }
-            else if (val == "5") // ser om det finns tillräckligt i lagret för dessa scalpers
-            {
-                var orderService = new OrderService("ordrar.csv");
-                var orders = orderService.LäsOrder();
+                case "2":
+                    register.RedigeraProdukt();
+                    break;
 
-                register.BearbetaOrdrar(orders, lager);
-            }else if (val == "6")
-            {
-                register.RestockeraProdukt();
+                case "3":
+                    register.LäggTillProdukt();
+                    break;
 
-            }
+                case "4":
+                    {
+                        var orderService = new OrderService("ordrar.csv");
+                        var orders = orderService.LäsOrder();
+                        register.VisaOrdrarMedProduktInfo(orders);
+                        break;
+                    }
 
+                case "5":
+                    {
+                        var orderService = new OrderService("ordrar.csv");
+                        var orders = orderService.LäsOrder();
 
-            else if (val == "7")
-            {
-                kör = false;
-            }
-            else
-            {
-                Console.WriteLine("Ogiltigt val, försök igen.");
+                        register.BearbetaOrdrar(orders, lager);
+                        break;
+                    }
+
+                case "6":
+                    register.RestockeraProdukt();
+                    break;
+
+                case "7":
+                    kör = false;
+                    break;
+
+                default:
+                    Console.WriteLine("Ogiltigt val, försök igen.");
+                    break;
             }
         }
     }
