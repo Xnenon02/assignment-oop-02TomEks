@@ -160,6 +160,28 @@
         }
         public void RestockeraProdukt()
         {
+            Console.WriteLine("Vill du:");
+            Console.WriteLine("1. Fylla på en enskild produkt");
+            Console.WriteLine("2. Fylla på alla produkter");
+            Console.Write("Välj alternativ (1 eller 2): ");
+            string val = Console.ReadLine();
+
+            switch (val)
+            {
+                case "1":
+                    RestockeraEnskildProdukt();
+                    break;
+                case "2":
+                    RestockeraAllaProdukter();
+                    break;
+                default:
+                    Console.WriteLine("Ogiltigt val.");
+                    break;
+            }
+        }
+
+        private void RestockeraEnskildProdukt()
+        {
             Console.Write("Ange produkt-ID att fylla på: ");
             if (!int.TryParse(Console.ReadLine(), out int id))
             {
@@ -184,15 +206,41 @@
 
             produkt.AntalLager += antal;
 
-            // Save updated stock back to CSV
+            // Spara ändringarna till CSV
+            SparaTillCsv();
+
+            Console.WriteLine($"Produkten {produkt.Namn} har fyllts på. Nytt antal: {produkt.AntalLager}");
+        }
+
+        public void RestockeraAllaProdukter() // chatgpt hjälpte lite här och snabb med att fixa så att jag kan fylla på alla produkter med en under menu
+        {
+            Console.Write("Hur många vill du lägga till för varje produkt i lager? ");
+            if (!int.TryParse(Console.ReadLine(), out int antal))
+            {
+                Console.WriteLine("Ogiltigt antal.");
+                return;
+            }
+
+            foreach (var produkt in _lager.Produkter)
+            {
+                produkt.AntalLager += antal;
+                Console.WriteLine($"Produkten {produkt.Namn} har fyllts på med {antal}. Nytt antal: {produkt.AntalLager}");
+            }
+
+            // Spara ändringarna till CSV
+            SparaTillCsv();
+
+            Console.WriteLine("Alla produkter har fyllts på och lagret har sparats.");
+        }
+
+        private void SparaTillCsv()
+        {
             string exeFolder = AppContext.BaseDirectory;
             string projectFolder = Path.GetFullPath(Path.Combine(exeFolder, "..", "..", ".."));
             string filePath = Path.Combine(projectFolder, "produkter.csv");
             _lager.SparaProdukterTillCsv(filePath);
-
-            Console.WriteLine($"Produkten {produkt.Namn} har fyllts på. Nytt antal: {produkt.AntalLager}");
-
         }
+
 
 
 

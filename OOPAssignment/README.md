@@ -70,7 +70,7 @@ Alla ändringar sparas direkt till `produkter.csv`.
 
 ### Extra funktioner (för VG)
 - [x] Bearbeta kundordrar och automatiskt minska lagersaldo
-- [ ] Stöd för bulk-import av nya produkter (kan läggas till)
+- [x] Stöd för bulk-import av nya produkter (har laggt till)
 
 ## Projektstruktur
 
