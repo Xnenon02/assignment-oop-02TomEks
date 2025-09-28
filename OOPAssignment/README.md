@@ -33,7 +33,8 @@ Projektet innehåller:
 
 ## Skärmbild
 
-![Screenshot av programmet](screenshot.png)
+![Screenshot av programmet](Toms_Lager/screenshot.png)
+
 
 *Bild: Programmet körs och visar menyn för att visa, redigera eller fylla på produkter.*
 
