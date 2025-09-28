@@ -158,5 +158,45 @@
             lager.SparaProdukterTillCsv("produkter_uppdaterat.csv");
             Console.WriteLine("Lageruppdatering sparad till produkter_uppdaterat.csv.");
         }
+        public void RestockeraProdukt()
+        {
+            Console.Write("Ange produkt-ID att fylla på: ");
+            if (!int.TryParse(Console.ReadLine(), out int id))
+            {
+                Console.WriteLine("Ogiltigt ID.");
+                return;
+            }
+
+            var produkt = _lager.Produkter.FirstOrDefault(p => p.Id == id);
+            if (produkt == null)
+            {
+                Console.WriteLine("Ingen produkt hittades med det ID:t.");
+                return;
+            }
+
+            Console.WriteLine($"Nuvarande antal av {produkt.Namn}: {produkt.AntalLager}");
+            Console.Write("Hur många vill du lägga till i lager? ");
+            if (!int.TryParse(Console.ReadLine(), out int antal))
+            {
+                Console.WriteLine("Ogiltigt antal.");
+                return;
+            }
+
+            produkt.AntalLager += antal;
+
+            // Save updated stock back to CSV
+            string exeFolder = AppContext.BaseDirectory;
+            string projectFolder = Path.GetFullPath(Path.Combine(exeFolder, "..", "..", ".."));
+            string filePath = Path.Combine(projectFolder, "produkter.csv");
+            _lager.SparaProdukterTillCsv(filePath);
+
+            Console.WriteLine($"Produkten {produkt.Namn} har fyllts på. Nytt antal: {produkt.AntalLager}");
+
+        }
+
+
+
+
     }
+
 }

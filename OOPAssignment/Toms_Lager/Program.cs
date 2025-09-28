@@ -22,7 +22,8 @@ internal class Program
             Console.WriteLine("3.Lägg till ny produkt");
             Console.WriteLine("4 Order Lista");
             Console.WriteLine("5 Bearbeta order");
-            Console.WriteLine("6 Avsluta");
+            Console.WriteLine("6 Restockera produkt");
+            Console.WriteLine("7 Avsluta");
             string val = Console.ReadLine();
 
             if (val == "1")
@@ -46,8 +47,14 @@ internal class Program
                 var orders = orderService.LäsOrder();
 
                 register.BearbetaOrdrar(orders, lager);
+            }else if (val == "6")
+            {
+                register.RestockeraProdukt();
+
             }
-            else if (val == "6")
+
+
+            else if (val == "7")
             {
                 kör = false;
             }
